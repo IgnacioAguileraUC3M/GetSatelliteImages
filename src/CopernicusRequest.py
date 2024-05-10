@@ -6,7 +6,7 @@ import requests
 import time
 
 from config.request_templates import templates
-from src.api_manager import APIManager
+from src.APIManager import APIManager
 from src.SatelliteImage import SatelliteImage
 
 class CopernicusRequest:
@@ -42,14 +42,16 @@ class CopernicusRequest:
     def __init__(self, filters: dict = None,
                  get_all_ids = False):
 
-        self.logger = logging.getLogger()   
+        self.logger = logging.getLogger(__name__)   
         self.__request = templates.base_url
         self.__api_manager = APIManager()
+        
+
 
         self.__has_filters = False
 
         self.add_dict_filters(filters) if filters else None
-        self.images = self.get_images(get_all_ids=get_all_ids)
+        self.images : list[SatelliteImage] = self.get_images(get_all_ids=get_all_ids) 
 
 
 
@@ -288,14 +290,14 @@ class CopernicusRequest:
         """
 
         response_images = response['value']
-        parsed_images = [SatelliteImage(*image) for image in response_images]
+        parsed_images = [SatelliteImage(api_manager=self.__api_manager,**image) for image in response_images]
         
         return parsed_images
     
 
 
     @property 
-    def __request(self) -> str:
+    def request(self) -> str:
         return self.__request
 
 

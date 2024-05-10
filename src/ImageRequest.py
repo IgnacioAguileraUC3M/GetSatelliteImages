@@ -3,7 +3,7 @@
 from tqdm import tqdm
 
 from config.request_templates import templates
-from src.api_manager import APIManager
+from src.APIManager import APIManager
 
 
 
@@ -89,6 +89,10 @@ class ImageRequest():
         # Get GRANULE name
         response = self.__api_manager.make_request(self.request,
                                                 params={})
+        
+        if not response:
+            return None
+
         response = response.json()
         granule_name = response['result'][0]['Name']
         self.request += f"({granule_name})/Nodes(IMG_DATA)/Nodes"
@@ -127,29 +131,29 @@ class ImageRequest():
 
 
     
-    def download_image(self, block_size=1024):
-        """
-        Downloads the image from the Copernicus API and returns a generator
-        with the image data, yielding it in blocks of block_size bytes.
+    # def download_image(self, block_size=1024):
+    #     """
+    #     Downloads the image from the Copernicus API and returns a generator
+    #     with the image data, yielding it in blocks of block_size bytes.
 
-        Parameters
-        ----------
-        block_size : int, optional
-            Size of the blocks to yield, by default 1024
+    #     Parameters
+    #     ----------
+    #     block_size : int, optional
+    #         Size of the blocks to yield, by default 1024
 
-        Returns
-        -------
-        generator
-            Generator with the image data
-        """
+    #     Returns
+    #     -------
+    #     generator
+    #         Generator with the image data
+    #     """
 
-        image_stream, total_size = self.__api_manager.get_image(self.request)
-        block_size = 1024
+    #     image_stream, total_size = self.__api_manager.get_image_stream(self.request)
+    #     block_size = 1024
 
-        with tqdm(total=total_size, unit="B", unit_scale=True) as progress_bar:
-            for data in image_stream.iter_content(block_size):
-                progress_bar.update(len(data))
-                yield data
+    #     with tqdm(total=total_size, unit="B", unit_scale=True) as progress_bar:
+    #         for data in image_stream.iter_content(block_size):
+    #             progress_bar.update(len(data))
+    #             yield data
 
         
 

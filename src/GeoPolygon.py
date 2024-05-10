@@ -1,9 +1,8 @@
 
-
 from shapely.geometry import Polygon    # Probbaly will be used in the future
 
 
-class CopernicusPolygon():
+class GeoPolygon():
 
     def __init__(self, coordinates: list[tuple[float]]):
 

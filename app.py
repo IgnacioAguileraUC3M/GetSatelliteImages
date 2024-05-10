@@ -1,8 +1,8 @@
-from src.copernicus_request import CopernicusRequest 
-from src.image_request import ImageRequest
-from src.token_manager import TokenManager
-from src.api_manager import APIManager
-from src.polygon_manager import CopernicusPolygon
+from src.CopernicusRequest import CopernicusRequest 
+from src.ImageRequest import ImageRequest
+from src.TokenManager import TokenManager
+from src.APIManager import APIManager
+from src.GeoPolygon import GeoPolygon
 from utils.setup_logger import setup_logging
 from src.SatelliteImage import SatelliteImage
 
@@ -58,9 +58,13 @@ test_request_filters = [
 
 def main():
 
-    image = SatelliteImage("./tmp/test.jp2", test_request_filters)
-    image.download()
+    r = CopernicusRequest(test_request_filters)
 
+    r.images.sort(key=lambda x: x.polygon.area, reverse=True)
+    r.images[0].download(image_path='tmp/test0.jp2')
+    r.images[-1].download(image_path='tmp/test1.jp2')
+
+    
     exit()
     logger = logging.getLogger()
     setup_logging()

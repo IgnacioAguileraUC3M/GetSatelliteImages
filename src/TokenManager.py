@@ -22,7 +22,7 @@ class TokenManager:
 
         self.token_refresh_time_buffer = 10
 
-        self.logger = logging.getLogger()
+        self.logger = logging.getLogger(__name__)
 
 
 
