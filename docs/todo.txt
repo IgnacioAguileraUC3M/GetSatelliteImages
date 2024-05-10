@@ -1,0 +1,29 @@
+
+
+- Format API request:
+    |- Select filter options 
+    |- Generate polygon (https://shapely.readthedocs.io/en/stable/reference/shapely.Polygon.html#shapely.Polygon)
+    |- Select start/end dates
+
+- Analyze response:
+    |- Check response is not null
+    |- Validate if specified polygon is contained in image 
+    |- Rank responses
+        |- By cloud coverage
+        |- By polygon intersection
+        |- By date
+
+- Download chosen image:
+    |- Get image url
+    |- Get image product (https://documentation.dataspace.copernicus.eu/APIs/OData.html#listing-product-nodes)
+    |- Make API request
+    |- Validate image integrity
+    |- Crop to polygon if specified 
+    |- Save image
+
+
+
+TAKE INTO ACCOUNT:
+     
+     - Whenever a query results in more products than 20 (default top value),
+     the API provides a nextLink at the bottom of the page:"@OData.nextLink":

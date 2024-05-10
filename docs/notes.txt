@@ -1,0 +1,39 @@
+https://documentation.dataspace.copernicus.eu/APIs/OData.html#query-by-attributes
+https://carpentries-incubator.github.io/geospatial-python/05-access-data.html
+https://sentinelhub-py.readthedocs.io/en/latest/
+https://sentinelhub-py.readthedocs.io/en/latest/examples/process_request.html#Setting-area-of-interest
+
+
+Similar resources:
+    - https://github.com/thewati/ExtractSatelliteImagesFromCSV
+    - https://github.com/cenima-ibama/sentinelsat
+    - https://github.com/Jimut123/jimutmap
+    - https://github.com/kscottz/PythonFromSpace/tree/master
+    - https://github.com/aws-samples/aws-smsl-geospatial-analysis-deforestation/
+
+Plot coordinates to image: https://gis.stackexchange.com/questions/410739/how-to-find-a-particular-coordinate-on-a-sentinel-image-using-projtransform
+
+S = 5wl1kgYDX5DhZc8idumofUFcrF2bNBKM
+I = sh-fd45547e-d70e-4bbd-8ce3-789468143c28
+--
+S=47bbXqYVxxwiX2Qui0KOmL3blpiJSDd2
+
+---------------
+< 	lt 	Lower than
+≤ 	le 	Lower or equal than
+> 	gt 	Greater than
+≥ 	ge 	Greater or equal than
+= 	eq 	Equal
+≠ 	ne 	Not Equal
+---------------
+
+Steps to get image:
+    1. Generate API request:
+    2. Get response (with image IDs)
+    3. Parse response
+        - If no images match request -> error management
+    4. Select one image
+    5. Make product request
+    6. Get image
+    7. Process image ¿?
+        - Crop to selected polygon 
